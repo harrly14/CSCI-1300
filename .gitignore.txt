@@ -1,0 +1,4 @@
+.tmp.drivedownload/
+.temp.driveupload/
+.tmp.*/
+.vscode/
