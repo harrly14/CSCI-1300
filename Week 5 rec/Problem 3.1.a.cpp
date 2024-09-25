@@ -10,7 +10,7 @@ double findMean(int a, int b, int c)
 
 int main()
 {
-    int average = findMean(2,5,2); //correct function name
+    int average = findMean(2,5,2); //corrected function name
     assert(average == 3);
     return 0;
 }

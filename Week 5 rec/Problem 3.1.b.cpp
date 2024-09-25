@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-bool passwordMatchCheck(string password, string confirmPassword)
+bool passwordMatchCheck(string password, string confirmPassword) //changed from string to bool
 {
     return password == confirmPassword; //changed from = to ==
 }
