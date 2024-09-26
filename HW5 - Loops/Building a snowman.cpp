@@ -9,16 +9,14 @@ check if size input is pos in main. if non-pos, output "Please enter a positive 
 using namespace std;
 
 int calculateTime(int target_size){
-    int acc, size,seconds;
+    int growth, size;
     size = 1;
-    acc = 0;
-    seconds = 0;
+    growth = 0;
     while (size<target_size) {
-        acc++;
-        seconds++;
-        size+=acc;
+        growth++;
+        size+=growth;
     }
-    return seconds;
+    return growth;
 }
 
 int main() {

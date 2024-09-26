@@ -12,36 +12,12 @@ sunflowers:   1           3
 toadstools:   5           10
 pine needles: 2           1
 */
+
 #include <iostream>
 using namespace std;
-int leaves,flowers,mushrooms, needles;
-
-int magic_potions() {
-    int i = 0;
-    while ((leaves/2)>i && (flowers/3)>i && (mushrooms/10)>i && needles>i) {
-    i++;
-    }
-    leaves = leaves - (i*2);
-    flowers = flowers - (i*3);
-    mushrooms = mushrooms - (i*10);
-    needles = needles - i;
-    return i;
-}
-
-int health_potions() {
-    int i = 0;
-    while ((leaves/6)>i && flowers>i &&(mushrooms/5)>i && (needles/2)>i) {
-    i++;
-    }
-    leaves = leaves - (i*6);
-    flowers = flowers - i;
-    mushrooms = mushrooms - (i*5);
-    needles = needles - (i*2);
-    return i;
-}
 
 int main() {
-    int potion;
+    int potion,leaves, flowers, mushrooms, needles, hp= 0, mp= 0;
     cout << "Select a potion crafting priority:" << endl;
     cout << "1. Health Potion" << endl << "2. Magic Potion" << endl;
     cin >> potion;
@@ -63,10 +39,42 @@ int main() {
     cout << "How many Pine Needles do you have?" << endl;
     cin >> needles;
 
-    if(potion == 2){
-        cout << "You can make "<<magic_potions()<<" Magic potion(s) and "<<health_potions() <<" Health potion(s)." <<endl;
-    } else if (potion == 1) {
-        cout << "You can make "<<health_potions()<<" Health potion(s) and "<<magic_potions() <<" Magic potion(s)." <<endl;
+    
+    if(potion == 1) {
+        while (leaves>=6 and flowers>=1 and mushrooms>=5 and needles>=2) {
+            hp++;
+            leaves -=6;
+            flowers -=1;
+            mushrooms -=5;
+            needles -=2;
+        }
+        while (leaves>=2 and flowers>=3 and mushrooms>=10 and needles >=1){
+            mp++;
+            leaves -=2;
+            flowers -=3;
+            mushrooms -=10;
+            needles -=1;
+        }
+
+        cout << "You can make "<<hp<<" Health potion(s) and "<<mp <<" Magic potion(s)." <<endl;
+    } else if (potion == 2){
+        while (leaves>=2 and flowers>=3 and mushrooms>=10 and needles >=1){
+            mp++;
+            leaves -=2;
+            flowers -=3;
+            mushrooms -=10;
+            needles -=1;
+        }
+        while (leaves>=6 and flowers>=1 and mushrooms>=5 and needles>=2) {
+            hp++;
+            leaves -=6;
+            flowers -=1;
+            mushrooms -=5;
+            needles -=2;
+        }
+        cout << "You can make "<<mp<<" Magic potion(s) and "<<hp <<" Health potion(s)." <<endl;
     }
+
     return 0;
 }
+

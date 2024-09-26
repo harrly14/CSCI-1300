@@ -2,10 +2,9 @@
 #include <vector>
 using namespace std;
 
+int c = 8;
+
+
 int main() {
-    int sqft = -1;
-    while (sqft<=0){
-        cout << "please enter the square feet to paint"<< endl;
-        cin >> sqft;
-    }
+    cout << c/10;
 }
