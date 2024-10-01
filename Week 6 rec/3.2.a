@@ -1,0 +1,15 @@
+Problem 3.2.a. Write out the steps you would use to solve this problem by hand as pseudocode. Stating
+your modifications to your validateInt is also sufficient.
+
+main: 
+1. display prompt for input and allow user to input a string
+2. call my function (return is a bool)
+3. display it is valid if the function return is true, display not valid if the return is false
+
+my function:
+1. take in a string and output a boolean
+2. turn the string into a double
+    revision: check for errors when turning the string into the double. return false if you get an error. 
+3. turn that double back into a string so it can be compared with the original string
+    revision: remove trailing 0s that result from turning a double into a string
+4. compare the original string and the new string. return true if they are the same.

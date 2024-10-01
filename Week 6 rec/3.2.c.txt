@@ -1,0 +1,13 @@
+Problem 3.2.c. Translate each of the sample inputs and expected outputs you created into assert statements.
+
+assert(-123.4)
+assert(-123.4 = "The entered string is a valid double!!")
+
+assert(-.)
+assert(-. = "The entered string is not a valid double!!")
+
+assert(10 10)
+assert(10 10 = "The entered string is not a valid double!!")
+
+assert(10e)
+assert(10e = "The entered string is a valid double!!")
