@@ -1,11 +1,3 @@
-//no global vars
-//no pass by reference
-//all functions must match precisely
-//well comment code
-//create assert statements for each question to test the code
-
-#include <cassert>
-
 /*
 - create a main function that allows user to interact with previously written functions
 1. present menu:
