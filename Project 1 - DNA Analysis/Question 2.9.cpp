@@ -173,50 +173,47 @@ void reverseComplement(std::string strand) {
 }
 
 void getCodingFrames(std::string strand) {
-    //if AGC is not in the strand OR if there is no stop codon, there are no ORFs
-    if (strand.find("ATG") == std::string::npos) {
-        std::cout << "No reading frames found." << std::endl;
-        return;
-    } else if (strand.find("TAG") == std::string::npos && 
-               strand.find("TAA") == std::string::npos && 
-               strand.find("TGA") == std::string::npos ) {
-        std::cout << "No reading frames found." << std::endl;
-        return;
-    }
-    
-    int starting_index = 0;
+    unsigned int starting_index = 0;
     int num_of_orfs_found = 0;
     
-    //while you can find the start codon in the string, perform the below
-    //this stops at a certain point because each time we perform the loop, we set the starting_index to 1+the last start codon
-    //therefore, it will search for a start codon starting just after the previous start codon
-    while (strand.find("ATG", starting_index) != std::string::npos) {
-        //the logic i was talking about above. we will use this starting index to create a substring that will become our ORF
-        starting_index = strand.find("ATG", starting_index);
-        //useful for determining if we found any ORFs
-        bool stop_codon_found = false;
+    //while you are starting within the strand
+    while (starting_index <= strand.length()) {
         
+        bool frame_open = false;
+        //find the next start codon
+        for (unsigned int i = starting_index; i <= strand.length()-3; i++) {
+            std::string current_codon = strand.substr(i,3);
+            if (current_codon == "ATG") {
+                starting_index = i;
+                frame_open = true;
+                break;
+            } 
+        }
+
+        bool stop_codon_found = false;
+
+        //finding the stop codon: 
         //starts at the starting index because we dont care about anything before the start codon
         //ends at strand length - 3 because we are checking each group of 3 chars, so you dont need to check the last 2 chars
-        for (unsigned int i = starting_index; i <= strand.length()-3; i+=3) {
-
+        unsigned int i = starting_index;
+        while (frame_open && i < strand.length() - 2) {
             std::string current_codon = strand.substr(i,3);
 
             //if the codon we are checking is a stop codon
             if (current_codon == "TAG" || current_codon == "TGA" || current_codon == "TAA") {
 
                 //index is i + 3 because we want to use the end of the codon, not the start
-                unsigned int stop_codon_index = i + 3;
+            unsigned int stop_codon_index = i + 3;
                 //the ORF is from the start index to the stop index
-                std::string ORF = strand.substr(starting_index, stop_codon_index-starting_index);
-                std::cout << ORF << std::endl;
+            std::string ORF = strand.substr(starting_index, stop_codon_index-starting_index);
+            std::cout << ORF << std::endl;
                 
-                num_of_orfs_found += 1;
-                //setting it to stop codon index because we want to check for start codons starting at where the previous ORF stopped
-                starting_index = stop_codon_index;
-                stop_codon_found = true;
-                break;
+            num_of_orfs_found += 1;
+            starting_index = stop_codon_index;
+            stop_codon_found = true;
+            frame_open = false;
             }
+            i+=3;
         }
         
         // If no stop codon was found, increment starting_index to avoid infinite loop
