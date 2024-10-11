@@ -51,7 +51,6 @@ double strandSimilarity(std::string strand1, std::string strand2){
 }
 
 int bestStrandMatch(std::string input_strand, std::string target_strand){
-    std::string strand1;
     
     if (input_strand.length() < target_strand.length()){
         std::cout<<"Best similarity score: 0.0"<<std::endl;
@@ -69,9 +68,13 @@ int bestStrandMatch(std::string input_strand, std::string target_strand){
 
         //compare the target strand and the substrand we made
         double current_similarity = strandSimilarity(current_substrand,target_strand);
-
-        //maximize the 
-        if (current_similarity > best_similarity_score){
+        if (current_similarity == 1) {
+            best_similarity_score = current_similarity;
+            best_match_index = i;
+            break;
+        }
+        //maximize the similarity 
+        else if (current_similarity > best_similarity_score){
             best_similarity_score = current_similarity;
             best_match_index = i;
         }

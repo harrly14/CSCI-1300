@@ -29,12 +29,11 @@ and return to the menu
 
 double strandSimilarity(std::string strand1, std::string strand2){
     if (strand1.length() != strand2.length()) {
-        //edited from the question so that you don't get an error when you shouldn't 
-        //(previously was return -1)
         return -1;
     }
 
     double match_counter = 0;
+
     for (unsigned int i = 0;i < strand1.length();i++) {
         if (strand1[i] == strand2[i]){
             match_counter++;
@@ -44,7 +43,6 @@ double strandSimilarity(std::string strand1, std::string strand2){
 }
 
 int bestStrandMatch(std::string input_strand, std::string target_strand){
-    std::string strand1;
     
     if (input_strand.length() < target_strand.length()){
         std::cout<<"Best similarity score: 0.0"<<std::endl;
@@ -65,8 +63,12 @@ int bestStrandMatch(std::string input_strand, std::string target_strand){
 
         //maximize the similarity 
         if (current_similarity > best_similarity_score){
-        best_similarity_score = current_similarity;
-        best_match_index = i;
+            best_similarity_score = current_similarity;
+            best_match_index = i;
+            //if the similarity is 1, stop processing
+            if (current_similarity == 1) {
+                break;
+            }
         }
     }
     std::cout <<"Best similarity score: "<<best_similarity_score<<std::endl;
@@ -91,7 +93,7 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
 
         best_match_index = bestStrandMatch(target_strand,input_strand);
 
-        //adds 0's to shorter string as stated above
+        //adds 0's to input string
         for (unsigned int i = 0; i < target_strand.length(); i++) {
             if (i < best_match_index) {
                 input_strand = '0' + input_strand;
@@ -103,7 +105,7 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
     } else if (input_strand.length() >= target_strand.length()) {
         best_match_index = bestStrandMatch(input_strand,target_strand);
 
-        //adds 0's to shorter string as stated above
+        //adds 0's to target string
         for (unsigned int i = 0; i < input_strand.length(); i++) {
             if (i < best_match_index) {
                 target_strand = '0' + target_strand;
@@ -115,9 +117,8 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
 
     std::cout << "Best alignment index: " << best_match_index << std::endl;
 
-    //find where the strands are not the same
     //its a deletion if there is a valid base in the input_strand, but not the target_strand
-    //its a deletion if there is a valid base in the target_strand, but not the input_strand
+    //its an insertion if there is a valid base in the target_strand, but not the input_strand
     //its a substitution if there is a valid base in both strands, but they are not the same
     for (unsigned int i = 0; i < target_strand.length(); i++) {
         if (input_strand[i] != target_strand[i]){
@@ -150,7 +151,6 @@ void reverseComplement(std::string strand) {
     std::string reverse_complement;
 
     for (unsigned int i = 0; i < strand.length(); i++) {
-        //for every base in the strand, add the reverse base to the FRONT of the new string, so that it is reversed
         switch (strand[i])
         {
         case 'A':
@@ -168,60 +168,44 @@ void reverseComplement(std::string strand) {
         }
     }
 
-
     std::cout << reverse_complement << std::endl;
 }
 
 void getCodingFrames(std::string strand) {
-    unsigned int starting_index = 0;
+    int starting_index = 0;
     int num_of_orfs_found = 0;
-    
-    //while you are starting within the strand
-    while (starting_index <= strand.length()) {
-        
-        bool frame_open = false;
-        //find the next start codon
-        for (unsigned int i = starting_index; i <= strand.length()-3; i++) {
-            std::string current_codon = strand.substr(i,3);
-            if (current_codon == "ATG") {
-                starting_index = i;
-                frame_open = true;
-                break;
-            } 
+    bool frame_open = false;
+
+    //starts at the starting index because we dont care about anything before the start codon
+    //ends at strand length - 3 because we are checking each group of 3 chars, so you dont need to check the last 2 chars
+    for (unsigned int i = starting_index; i < strand.length() - 2; i++){
+            
+       std::string current_codon = strand.substr(i,3);
+
+        //find start codon
+        if (!frame_open && current_codon == "ATG"){
+            starting_index = i;
+            frame_open = true;
         }
-
-        bool stop_codon_found = false;
-
-        //finding the stop codon: 
-        //starts at the starting index because we dont care about anything before the start codon
-        //ends at strand length - 3 because we are checking each group of 3 chars, so you dont need to check the last 2 chars
-        unsigned int i = starting_index;
-        while (frame_open && i < strand.length() - 2) {
-            std::string current_codon = strand.substr(i,3);
+        else if (frame_open) {
+            //increment by 3 instead of 1
+            i += 2;
+            current_codon = strand.substr(i,3);
 
             //if the codon we are checking is a stop codon
             if (current_codon == "TAG" || current_codon == "TGA" || current_codon == "TAA") {
-
-                //index is i + 3 because we want to use the end of the codon, not the start
-            unsigned int stop_codon_index = i + 3;
-                //the ORF is from the start index to the stop index
-            std::string ORF = strand.substr(starting_index, stop_codon_index-starting_index);
-            std::cout << ORF << std::endl;
-                
-            num_of_orfs_found += 1;
-            starting_index = stop_codon_index;
-            stop_codon_found = true;
-            frame_open = false;
-            }
-            i+=3;
+                    
+                //the ORF is from the start index to the stop index + 3 to include the whole stop codon 
+                std::string ORF = strand.substr(starting_index, i + 3 - starting_index);
+                std::cout << ORF << std::endl;
+                    
+                // make new start index the codon after the stop codon
+                starting_index = i + 3;
+                num_of_orfs_found += 1;
+                frame_open = false;
+                }
+           }
         }
-        
-        // If no stop codon was found, increment starting_index to avoid infinite loop
-        if (!stop_codon_found) {
-            starting_index++;
-        }
-    }
-    //if we did not find any ORFs, print no ORFs found
     if (num_of_orfs_found < 1) {
         std::cout << "No reading frames found." << std::endl;
     }
@@ -229,20 +213,18 @@ void getCodingFrames(std::string strand) {
 
 bool isValidBase(char base){
     switch(base){
-        //if A,C,G, or T return true
         case 'A':
         case 'C':
         case 'G':
         case 'T':
             return true;
-        //return false for everything else
         default:
             return false;
     }
 }
 
 bool isValidStrand(std::string strand){
-    //not valid if string is empry
+    //not valid if string is empty
     if (strand.length() == 0){
         return false;
     }
@@ -254,7 +236,6 @@ bool isValidStrand(std::string strand){
             return false;
         }
     }
-    // only executes if no bases return false
     return true;
 }
 

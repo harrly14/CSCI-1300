@@ -92,7 +92,7 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
 
         best_match_index = bestStrandMatch(target_strand,input_strand);
 
-        //adds 0's to shorter string as stated above
+        //adds 0's to input string
         for (unsigned int i = 0; i < target_strand.length(); i++) {
             if (i < best_match_index) {
                 input_strand = '0' + input_strand;
@@ -104,7 +104,7 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
     } else if (input_strand.length() >= target_strand.length()) {
         best_match_index = bestStrandMatch(input_strand,target_strand);
 
-        //adds 0's to shorter string as stated above
+        //adds 0's to target string
         for (unsigned int i = 0; i < input_strand.length(); i++) {
             if (i < best_match_index) {
                 target_strand = '0' + target_strand;
@@ -116,9 +116,8 @@ void identifyMutations(std::string input_strand, std::string target_strand) {
 
     std::cout << "Best alignment index: " << best_match_index << std::endl;
 
-    //find where the strands are not the same
     //its a deletion if there is a valid base in the input_strand, but not the target_strand
-    //its a deletion if there is a valid base in the target_strand, but not the input_strand
+    //its an insertion if there is a valid base in the target_strand, but not the input_strand
     //its a substitution if there is a valid base in both strands, but they are not the same
     for (unsigned int i = 0; i < target_strand.length(); i++) {
         if (input_strand[i] != target_strand[i]){
