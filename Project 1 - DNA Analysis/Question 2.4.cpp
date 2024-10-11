@@ -72,8 +72,8 @@ int bestStrandMatch(std::string input_strand, std::string target_strand){
 
         //maximize the 
         if (current_similarity > best_similarity_score){
-        best_similarity_score = current_similarity;
-        best_match_index = i;
+            best_similarity_score = current_similarity;
+            best_match_index = i;
         }
     }
     std::cout <<"Best similarity score: "<<best_similarity_score<<std::endl;

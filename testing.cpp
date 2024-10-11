@@ -1,18 +1,20 @@
 #include <iostream>
+#include <algorithm>
 using namespace std; 
+
+bool is_one(char c) {
+	if (c == '1') {
+		return true;
+	}
+	return false;
+}
+
 int main() { 
-	string fruits[] = {"Apple", "Banana", "Cherry", "Date", "Fig", "Grape", "Mango"}; 
-	int longest_string = fruits[0].length(); 
-	for (int i = 1; i < 7; i++){ 
-		if (fruits[i].length() > longest_string){ //FILL IN THIS LINE 
-			longest_string = fruits[i].length(); 
-		} 
-	} 
-	for (int i = 0; i < longest_string; i++){ 
-		for (int j = 0; j < 7; j++){
-			if (i < static_cast<int>(fruits[j].length())){ 
-				cout << fruits[j][i] << endl; // FILL IN THIS LINE 
-			} 
-		} 
-	} 
+	string grid = "12312312";
+	int count = 0; 
+	for (char c : grid) {
+	count += count_if(grid.begin(), grid.end(), is_one(c));
+	}
+
+	
 }

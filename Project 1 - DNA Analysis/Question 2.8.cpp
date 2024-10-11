@@ -33,7 +33,7 @@ int main() {
         //ATGAGATTTTAG, ATGTTAGGATAG, ATGATAATAGTTTAA
     //getCodingFrames("ATGCTTAGCGATGAATGATCGTAAATGCGTGAATGGCCGTAGTGAATGCGTTAG");
         //ATGCTTAGCGATGAATGA, ATGCGTGAATGGCCGTAG, ATGCGTTAG
-    getCodingFrames("ATGAGTCGTAGTAAATGGCGATGTAGATGCCCGTAGGCTTAGGATGTGATGAATG");
+    //getCodingFrames("ATGAGTCGTAGTAAATGGCGATGTAGATGCCCGTAGGCTTAGGATGTGATGAATG");
         //ATGAGTCGTAGTAAATGGCGATGTAGATGCCCGTAG, ATGTGA
     //getCodingFrames("ATAGATAGATGATAGTTGATATGGAT");
         //no reading frames
@@ -52,18 +52,26 @@ void getCodingFrames(std::string strand) {
         return;
     }
     
-    int starting_index = 0;
+    
+    unsigned int starting_index = 0;
     int num_of_orfs_found = 0;
     
     //while you can find the start codon in the string, perform the below
-    //this stops at a certain point because each time we perform the loop, we set the starting_index to 1+the last start codon
-    //therefore, it will search for a start codon starting just after the previous start codon
-    while (strand.find("ATG", starting_index) != std::string::npos) {
-        //the logic i was talking about above. we will use this starting index to create a substring that will become our ORF
-        starting_index = strand.find("ATG", starting_index);
+    while (starting_index <= strand.length()) {
+        
+        //find the next start codon
+        for (unsigned int i = starting_index; i <= strand.length()-3; i++) {
+            std::string current_codon = strand.substr(i,3);
+            if (current_codon == "ATG") {
+                starting_index = i;
+                break;
+            } 
+        }
+
         //useful for determining if we found any ORFs
         bool stop_codon_found = false;
-        
+
+        //finding the stop codon: 
         //starts at the starting index because we dont care about anything before the start codon
         //ends at strand length - 3 because we are checking each group of 3 chars, so you dont need to check the last 2 chars
         for (unsigned int i = starting_index; i <= strand.length()-3; i+=3) {
