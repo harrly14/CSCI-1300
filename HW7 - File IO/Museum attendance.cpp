@@ -31,10 +31,52 @@ Every student has boarded the bus. It's time to leave.
 using namespace std;
 
 void compareAttendanceSheet(string first_attendance_file, string second_attendance_file){
+    ifstream attendance1(first_attendance_file), attendance2(second_attendance_file);
+    
+    if (attendance1.fail() || attendance2.fail()) {
+        cout << "Failed to open attendance files" << endl;
+        return;   
+    }
+
+    const int arr_size = 30;
+    string arr[arr_size];
+    
+    //for each line in att2
+        //compare line to all lines in att1
+        //if we find the lines to be the same, continue
+        //if we get to the end and lines are never the same, add that name to the array
+
+    string att2_line, att1_line;
+    int counter = 0;
+
+    while (getline(attendance1, att1_line)) {
+        bool found = false;
+
+        while(getline(attendance2, att2_line)) {
+            if (att1_line==att2_line){
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            arr[counter] = att1_line;
+            ++counter;
+        }
+        attendance2.clear();
+        attendance2.seekg(0);
+    }
+    if (counter == 0) {
+        cout << "Every student has boarded the bus. It's time to leave.";
+    } else {
+            cout << "Students yet to board the bus are" << endl;
+        for (int i = 0; i < counter; ++i){
+            cout << arr[i] << endl;
+        }
+    }
 
 }
 
 int main() {
-    compareAttendanceSheet("example_1.txt", "example_2.txt");
+    compareAttendanceSheet("attendance_sheet_1.txt", "attendance_sheet_2.txt");
     return 0;
 }
