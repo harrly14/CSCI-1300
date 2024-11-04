@@ -1,0 +1,6 @@
+name|health|mana|status
+Eric|100|50|A
+Taryn|80|100|A
+John|150|200|A
+Murray|110|75|F
+Kelechi|90|30|S

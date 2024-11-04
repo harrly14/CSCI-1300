@@ -1,0 +1,6 @@
+name|health|mana|status
+Sarah|-100|50|A
+Jenny|80|100|F
+Paul|150|-200|R
+Robert|110|-75|S
+Atalanta|90|30|S

@@ -1,0 +1,5 @@
+name|health|mana|status
+Toad|100.3355|50|A
+Witch|200|50|F
+Cerberus|300|75|A
+Cyclops|180|100|A

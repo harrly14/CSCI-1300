@@ -1,0 +1,5 @@
+name|health|mana|status
+Frog|100.3355|-50|S
+Dragon|-200|50|A
+Witch|300|75|A
+Cyclops|180|100|R
