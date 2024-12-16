@@ -1,0 +1,26 @@
+|Event_Num |Path_Type |Impacting_Familiars |Sardines_Change ( no familiar) |Title |Description | Description (with familiar) | Sardines_change (with Familiar)
+1|1|0|500|Transmutation Class|Learn how to turn useless gold coins into valuable sardines. |Gabe has invested the money you find.|700
+2|1|0|-300|Extensive Training|Studying wears you out and costs you some sardines in recovery meals. | |-300
+3|1|1,4|0|Dorm Room Decoration Competition|Your dorm room holds its annual dorm room decoration competition. |A pet really helps liven the place up|400
+4|1|5|-200|Magical Cat-astrophe|A spell goes horribly wrong, causing temporary cosmic unbalance. |Your angel familiar is able to restore cosmic balance relatively quickly.|0
+5|1|0|-200|Midterms|Lose sardines due to exam stress. | |-200
+6|1|1|-500|Summoning Class|Accidentally summon a mean water spirit who wants to take all your hard earned sardines from you. |Your goldfish familiar translates for you, striking a deal. The water spirit leaves without taking anything.|0
+7|1|4|-300|Crushing Loneliness|College can be lonely sometimes. |Your smaller cat is there to keep you company|0
+8|1|2|-200|Theatre Class|You are forced to recite a Shakespearian sonnet in front of the whole class, which is quite embarrassing. |Your skeleton familar offers its head to you as a prop. You perform the sonnet incredibly|0
+9|2|0|500|Hidden Vault|You stumble upon a hidden vault filled to the brim with sardines. |Gabe has invested the money you find.|700
+10|2|0|-200|Shrine to the Fallen|You pass by a shrine to fellow fallen cat warriors. You give an offering out of respect. | |-200
+11|2|5,2|0|Mysterious Wall Carving|You stumble upon mysterious runic carvings on the wall. The symbols are so old you would need a translator who is thousands of years old to translate them. |Your familiar seems to satisfy this requirement and translates it, teaching you a one-time sardine summoning spell|300
+12|2|1|-400|Sudden Flooding|The room suddenly fills with water and washes out your sardine-filled pockets. |Your goldfish is able to control the water fast enough to avoid the effects|0
+13|2|3|-400|Reality Glitch|Heavy magic usage causes a glitch in reality, causing items to blip into and out of existence. |Gabe bannal presence seems to offset the chaos of the glitch, nullifying it|0
+14|2|5|-400|Angry Spirit|An angry spirit haunts you from beyond the grave. |Your angel familiar is able to return the spirit to the grave.|0
+15|2|2|-300|Dog Attack|An angry dog charges at you looking for a something to gnaw on. |The dog chases after your little skeleton familiar instead|0
+16|2|4|-200|Impossible Room|You enter into a room that will light on fire if either one or two people are inside it. |Your smaller cat harnesses the properties of quantum superposition to be both there and not there at the same time|0
+17|0|0|500|Care Package|Your mom misses you and sends you a care package to remind you that you are loved. | |500
+18|0|4|-200|Magical Sardines Escape|Your sardines suddenly become imbued with magical energy and leap from your pockets, running away. |Your cat nimbly catches each and every one of them.|0
+19|0|3|-800|Inter-Dimensional Audit|A team of inter-dimensional magical accountants begins an impossibly complex audit of your magical abilities and how your sardines should be taxed. |Gabe's adept paperwork skills handle the threat in mere seconds.|0
+20|0|1|0|Foreign encounter|You encounter another cat who speaks a language you do not. They seem to be asked for help with something, but you can't figure out what. |Your goldfish uncomfortably crams itself in your ear, translating every word like a Babel Fish. You are able to help the stranger out and they give you some sardines as a reward.|200
+21|0|2|-200|Necromantic Curse|A necromantic curse takes hold of you. |Your skeleton seemingly knows the curse that has taken hold of you and is able to nullify it|0
+22|0|5|-500|Devil's Bargain|The devil comes to you with a bargain; you give him 500 sardines or die. You choose the former because you like your life. |Before you can say your decision aloud, your angel familiar casts the devil back to hell|0
+23|0|4|0|Cat Sardine Theft| |Your cat eats some of your sardines while you aren't looking.|-50
+24|0|0|-200|Wizard duel|A mysterious cat wizard approaches you on your exploits and asks you for a duel. You are no match and lose some sardines to them. | |-200
+25|0|0|0|...|Nothing seems to happen| |0

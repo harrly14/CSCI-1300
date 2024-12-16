@@ -1,0 +1,6 @@
+playerName|age|agility|mana|wisdom|sardines
+Bartholemew|5|500|500|1000|2000
+Tom, the Wise|8|900|600|600|2000
+Big Darryl|18|900|700|500|2000
+Clawdia|7|600|500|900|2000
+Lolita|10|1000|500|500|2000

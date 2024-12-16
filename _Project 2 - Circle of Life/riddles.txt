@@ -1,0 +1,10 @@
+Question(answer specifications)|Answer
+What has to be broken before you can use it? (single word)|egg
+I’m tall when I’m young, and I’m short when I’m old. What am I? (single word)|candle
+I have a tail, and I have a head, but i have no body. I am NOT a snake. What am I? (single word)|coin
+What crosses the river but doesn't move? (single word)|bridge
+What Rooms can't you Enter? (single word)|mushrooms
+I know a word. Six letters it contains. Take away one. And twelve is what remains. (single word)|dozens
+When you are carrying a barrel full of water, what can you add to it to make it lighter? (single word)|hole
+I have branches, but no fruit, trunk or leaves. What am I? (single word)|bank
+What has many keys but can’t open a single lock? (single word)|piano
